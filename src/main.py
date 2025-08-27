@@ -16,25 +16,25 @@ players = Players()
 players.process([print])
 
 while True:
-    print(f'\n{colored('+', 'green')} to add sound effect.')
-    command = input(f'{colored('E', 'green')}xit {colored('O', 'green')}rder {colored('V', 'green')}ersus {colored('F', 'green')}ree4All {colored('G', 'green')}roups→[count]: ').lower()
+    print(f'\n{colored('+', 'green')} to add text to speech effect.')
+    command = input(f'{colored('E', 'green')}xit {colored('O', 'green')}rder {colored('V', 'green')}ersus {colored('F', 'green')}ree4All {colored('G', 'green')}roups[{colored('4', 'green')}]: ').lower()
 
-    if '+' in command:
+    if command.startswith('+'):
         processes = [print, sound]
     else:
         processes = [print]
 
-    if command.startswith('e'):
+    if 'e' in command:
         exit()
-    elif command.startswith('o'):
+    elif 'o' in command:
         players.order()
-    elif command.startswith('v'):
+    elif 'v' in command:
         players.versus()
-    elif command.startswith('f'):
+    elif 'f' in command:
         players.free_for_all()
-    elif command.startswith('g'):
+    elif 'g' in command:
         try:
-            players.groups(int(command.split("→", 1)[1]))
+            players.groups(int(command[1:]))
         except Exception as e:
             print(e)
             players.groups()

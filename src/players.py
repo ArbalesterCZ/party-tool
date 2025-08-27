@@ -14,7 +14,6 @@ class Players:
                 self.__void = len(self.__raw_data[i])
 
     def process(self, processes):
-        print("Start process")
         count_format = len(str(len(self.__results)))
         print('\n ' + count_format * ' ' + self.__tag)
         order = 1
@@ -41,7 +40,6 @@ class Players:
         if len(players) % 2 == 1:
             result.append('{player} is waiting..'.format(player=players[len(players) - 1]))
 
-        print("versus komplete")
         self.__results = result
 
     def free_for_all(self):
