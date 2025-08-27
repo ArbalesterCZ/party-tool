@@ -7,13 +7,10 @@ class Players:
         self.__raw_data = numpy.genfromtxt(fname=filepath, dtype='str', delimiter='\n')
         self.__results = self.__raw_data.copy().tolist()
 
-        name_length = 0
+        self.__void = 0
         for i in range(len(self.__raw_data)):
-            if len(self.__raw_data[i]) > name_length:
-                name_length = len(self.__raw_data[i])
-
-        self.__void_mass = name_length + 4
-        self.__void_size = ' ' * (self.__void_mass - name_length)
+            if len(self.__raw_data[i]) > self.__void:
+                self.__void = len(self.__raw_data[i])
 
     def process(self, processes):
         print()
@@ -38,7 +35,7 @@ class Players:
 
         result = []
         for i in range(0, len(players) - 1, 2):
-            result.append(f'{players[i]:<{self.__void_mass}}versus{self.__void_size}{players[i + 1]}')
+            result.append(f'{players[i]:<{self.__void}} versus {players[i + 1]}')
 
         if len(players) % 2 == 1:
             result.append('{player} is waiting..'.format(player=players[len(players) - 1]))
@@ -51,7 +48,7 @@ class Players:
         result = []
         for i in range(len(self.__raw_data)):
             for j in range(0, i):
-                result.append(f'{self.__raw_data[i]:<{self.__void_mass}}versus{self.__void_size}{self.__raw_data[j]}')
+                result.append(f'{self.__raw_data[i]:<{self.__void}} versus {self.__raw_data[j]}')
 
         numpy.random.shuffle(result)
         self.__results = result
