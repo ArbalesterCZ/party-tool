@@ -5,7 +5,7 @@ import numpy
 
 class Players:
     def __init__(self, filepath='../rsc/Players.txt'):
-        self.__tag = '[Players]'
+        self.__tag = colored('Players', 'yellow')
         self.__raw_data = numpy.genfromtxt(fname=filepath, dtype='str', delimiter='\n')
         self.__results = self.__raw_data.copy().tolist()
         self.__void = 0
@@ -14,10 +14,10 @@ class Players:
                 self.__void = len(self.__raw_data[i])
 
     def process(self, processes):
-        print()
-        print(self.__tag)
-        order = 1
+        print("Start process")
         count_format = len(str(len(self.__results)))
+        print('\n ' + count_format * ' ' + self.__tag)
+        order = 1
         for result in self.__results:
             print(colored(f'{order:0{count_format}}', "green"), end=' ')
             order += 1
@@ -25,12 +25,12 @@ class Players:
                 process(result)
 
     def order(self):
-        self.__tag = '[Order]'
+        self.__tag = colored('Order', 'yellow')
         self.__results = self.__raw_data.copy()
         numpy.random.shuffle(self.__results)
 
     def versus(self):
-        self.__tag = '[Versus]'
+        self.__tag = colored('Versus', 'yellow')
         players = self.__raw_data.copy()
         numpy.random.shuffle(players)
 
@@ -41,10 +41,11 @@ class Players:
         if len(players) % 2 == 1:
             result.append('{player} is waiting..'.format(player=players[len(players) - 1]))
 
+        print("versus komplete")
         self.__results = result
 
     def free_for_all(self):
-        self.__tag = '[Free4All]'
+        self.__tag = colored('Free4All', 'yellow')
 
         result = []
         for i in range(len(self.__raw_data)):
@@ -55,7 +56,7 @@ class Players:
         numpy.random.shuffle(result)
 
     def groups(self, count=4):
-        self.__tag = '[Groups]'
+        self.__tag = colored('Groups', 'yellow')
         players = self.__raw_data.copy()
         numpy.random.shuffle(players)
         result = []

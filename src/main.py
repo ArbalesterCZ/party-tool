@@ -3,10 +3,11 @@ from gtts import gTTS
 from termcolor import colored
 
 import playsound
+import re
 
 
 def sound(message, lang='cs', filepath='/tmp/voice.mp3'):
-    tts = gTTS(text=message, lang=lang)
+    tts = gTTS(text=re.sub(r'\x1b\[[0-9;]*m', '', message), lang=lang)
     tts.save(filepath)
     playsound.playsound(filepath)
 
