@@ -36,7 +36,7 @@ while True:
         try:
             players.groups(int(command[1:]))
         except Exception as e:
-            print(e)
+            print(colored(e, 'red'))
             players.groups()
 
     players.process(processes)
