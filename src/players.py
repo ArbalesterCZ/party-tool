@@ -6,7 +6,6 @@ class Players:
         self.__tag = '[Players]'
         self.__raw_data = numpy.genfromtxt(fname=filepath, dtype='str', delimiter='\n')
         self.__results = self.__raw_data.copy().tolist()
-
         self.__void = 0
         for i in range(len(self.__raw_data)):
             if len(self.__raw_data[i]) > self.__void:
@@ -50,8 +49,8 @@ class Players:
             for j in range(0, i):
                 result.append(f'{self.__raw_data[i]:<{self.__void}} versus {self.__raw_data[j]}')
 
-        numpy.random.shuffle(result)
         self.__results = result
+        numpy.random.shuffle(result)
 
     def groups(self, count=4):
         self.__tag = '[Groups]'
