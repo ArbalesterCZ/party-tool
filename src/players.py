@@ -1,3 +1,5 @@
+from termcolor import colored
+
 import numpy
 
 
@@ -17,7 +19,7 @@ class Players:
         order = 1
         count_format = len(str(len(self.__results)))
         for result in self.__results:
-            print(str(f'{order:0{count_format}d}'), end=') ')
+            print(colored(f'{order:0{count_format}}', "green"), end=' ')
             order += 1
             for process in processes:
                 process(result)
@@ -34,7 +36,7 @@ class Players:
 
         result = []
         for i in range(0, len(players) - 1, 2):
-            result.append(f'{players[i]:<{self.__void}} versus {players[i + 1]}')
+            result.append(f'{players[i]:<{self.__void}}{colored(" versus ", "green")}{players[i + 1]}')
 
         if len(players) % 2 == 1:
             result.append('{player} is waiting..'.format(player=players[len(players) - 1]))
@@ -47,7 +49,7 @@ class Players:
         result = []
         for i in range(len(self.__raw_data)):
             for j in range(0, i):
-                result.append(f'{self.__raw_data[i]:<{self.__void}} versus {self.__raw_data[j]}')
+                result.append(f'{self.__raw_data[i]:<{self.__void}}{colored(" versus ", "green")}{self.__raw_data[j]}')
 
         self.__results = result
         numpy.random.shuffle(result)

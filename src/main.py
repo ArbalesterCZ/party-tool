@@ -1,5 +1,6 @@
 from players import Players
 from gtts import gTTS
+from termcolor import colored
 
 import playsound
 
@@ -14,7 +15,8 @@ players = Players()
 players.process([print])
 
 while True:
-    command = input('\n[+](Add Sound Effect...)\n[E]xit [O]rder [V]ersus [F]ree4All [G]roups→<count>: ').lower()
+    print(f'\n{colored('+', 'green')} to add sound effect.')
+    command = input(f'{colored('E', 'green')}xit {colored('O', 'green')}rder {colored('V', 'green')}ersus {colored('F', 'green')}ree4All {colored('G', 'green')}roups→[count]: ').lower()
 
     if '+' in command:
         processes = [print, sound]
