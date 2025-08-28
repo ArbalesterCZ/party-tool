@@ -34,7 +34,7 @@ while True:
         players.free_for_all()
     elif 'g' in command:
         try:
-            players.groups(int(command[1:]))
+            players.groups(int(command.split('g', 1)[1]))
         except Exception as e:
             print(colored(e, 'red'))
             players.groups()
