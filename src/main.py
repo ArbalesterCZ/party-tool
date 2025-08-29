@@ -6,13 +6,13 @@ import playsound
 import re
 
 
-def sound(message, lang='cs', filepath='/tmp/voice.mp3'):
+def sound(message: str, lang='cs', filepath='/tmp/voice.mp3') -> None:
     tts = gTTS(text=re.sub(r'\x1b\[[0-9;]*m', '', message), lang=lang)
     tts.save(filepath)
     playsound.playsound(filepath)
 
 players = Players()
-players.process([print])
+players.show([print])
 
 while True:
     print(f'\n{colored('+', 'green')} to add text to speech effect.')
@@ -35,4 +35,4 @@ while True:
         except Exception as e:
             players.groups(1)
 
-    players.process(processes)
+    players.show(processes)

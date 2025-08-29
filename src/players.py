@@ -4,7 +4,7 @@ import numpy
 
 
 class Players:
-    def __init__(self, filepath='../rsc/Players.txt'):
+    def __init__(self, filepath='../rsc/Players.txt') -> None:
         self.__tag = colored('Players', 'yellow')
         self.__raw_data = numpy.genfromtxt(fname=filepath, dtype='str', delimiter='\n')
         self.__results = self.__raw_data.copy().tolist()
@@ -13,9 +13,9 @@ class Players:
             if len(self.__raw_data[i]) > self.__void:
                 self.__void = len(self.__raw_data[i])
 
-    def process(self, processes: [callable]):
+    def show(self, processes: list[callable]) -> None:
         count_format = len(str(len(self.__results)))
-        print('\n ' + count_format * ' ' + self.__tag)
+        print(f'\n{count_format * ' '} {self.__tag}')
         order = 1
         for result in self.__results:
             print(colored(f'{order:0{count_format}}', "green"), end=' ')
@@ -23,7 +23,7 @@ class Players:
             for process in processes:
                 process(result)
 
-    def versus(self):
+    def versus(self) -> None:
         self.__tag = colored('Versus', 'yellow')
         players = self.__raw_data.copy()
         numpy.random.shuffle(players)
@@ -45,7 +45,7 @@ class Players:
 
         numpy.random.shuffle(self.__results)
 
-    def groups(self, count: int):
+    def groups(self, count: int) -> None:
         self.__tag = colored('Groups', 'yellow')
         players = self.__raw_data.copy()
         numpy.random.shuffle(players)
