@@ -1,8 +1,0 @@
-[Desktop Entry]
-Name=Party
-Comment=Players order to play
-Path=/home/milan/Skripty/Party/src
-Exec=/home/milan/Skripty/Party/src/Main.py
-Icon=/home/milan/Obrázky/Icons/telescope.png
-Terminal=true
-Type=Application
