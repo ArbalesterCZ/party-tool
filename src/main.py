@@ -11,13 +11,12 @@ def sound(message, lang='cs', filepath='/tmp/voice.mp3'):
     tts.save(filepath)
     playsound.playsound(filepath)
 
-
 players = Players()
 players.process([print])
 
 while True:
     print(f'\n{colored('+', 'green')} to add text to speech effect.')
-    command = input(f'{colored('E', 'green')}xit {colored('O', 'green')}rder {colored('V', 'green')}ersus {colored('F', 'green')}ree4All {colored('G', 'green')}roups[{colored('4', 'green')}]: ').lower()
+    command = input(f'{colored('E', 'green')}xit {colored('V', 'green')}ersus {colored('F', 'green')}ree4All {colored('G', 'green')}roups[{colored('1', 'green')}]: ').lower()
 
     if command.startswith('+'):
         processes = [print, sound]
@@ -26,8 +25,6 @@ while True:
 
     if 'e' in command:
         exit()
-    elif 'o' in command:
-        players.order()
     elif 'v' in command:
         players.versus()
     elif 'f' in command:
@@ -36,7 +33,6 @@ while True:
         try:
             players.groups(int(command.split('g', 1)[1]))
         except Exception as e:
-            print(colored(e, 'red'))
-            players.groups()
+            players.groups(1)
 
     players.process(processes)

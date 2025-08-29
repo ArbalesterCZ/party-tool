@@ -13,7 +13,7 @@ class Players:
             if len(self.__raw_data[i]) > self.__void:
                 self.__void = len(self.__raw_data[i])
 
-    def process(self, processes):
+    def process(self, processes: [callable]):
         count_format = len(str(len(self.__results)))
         print('\n ' + count_format * ' ' + self.__tag)
         order = 1
@@ -22,11 +22,6 @@ class Players:
             order += 1
             for process in processes:
                 process(result)
-
-    def order(self):
-        self.__tag = colored('Order', 'yellow')
-        self.__results = self.__raw_data.copy()
-        numpy.random.shuffle(self.__results)
 
     def versus(self):
         self.__tag = colored('Versus', 'yellow')
@@ -50,7 +45,7 @@ class Players:
 
         numpy.random.shuffle(self.__results)
 
-    def groups(self, count=4):
+    def groups(self, count: int):
         self.__tag = colored('Groups', 'yellow')
         players = self.__raw_data.copy()
         numpy.random.shuffle(players)
