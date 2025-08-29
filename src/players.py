@@ -4,8 +4,8 @@ import numpy
 
 
 class Players:
-    def __init__(self, filepath='../rsc/Players.txt') -> None:
-        self.__tag = colored('Players', 'yellow')
+    def __init__(self, filepath='../rsc/players') -> None:
+        self.__tag = colored(filepath.split('/')[-1].capitalize(), 'yellow')
         self.__raw_data = numpy.genfromtxt(fname=filepath, dtype='str', delimiter='\n')
         self.__results = self.__raw_data.copy().tolist()
         self.__void = 0

@@ -18,12 +18,9 @@ while True:
     print(f'\n{colored('+', 'green')} to add text to speech effect.')
     command = input(f'{colored('E', 'green')}xit {colored('V', 'green')}ersus {colored('F', 'green')}ree4All {colored('G', 'green')}roups[{colored('1', 'green')}]: ').lower()
 
-    if command.startswith('+'):
-        processes = [print, sound]
-    else:
-        processes = [print]
-
-    if 'e' in command:
+    if '$' in command:
+        players = Players(f'../rsc/{command.split('$', 1)[1].lower()}')
+    elif 'e' in command:
         exit()
     elif 'v' in command:
         players.versus()
@@ -34,5 +31,10 @@ while True:
             players.groups(int(command.split('g', 1)[1]))
         except Exception as e:
             players.groups(1)
+
+    if command.startswith('+'):
+        processes = [print, sound]
+    else:
+        processes = [print]
 
     players.show(processes)
