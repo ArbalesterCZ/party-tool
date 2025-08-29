@@ -33,42 +33,37 @@ class Players:
         players = self.__raw_data.copy()
         numpy.random.shuffle(players)
 
-        result = []
+        self.__results = []
         for i in range(0, len(players) - 1, 2):
-            result.append(f'{players[i]:<{self.__void}}{colored(" versus ", "green")}{players[i + 1]}')
+            self.__results.append(f'{players[i]:<{self.__void}}{colored(" versus ", "green")}{players[i + 1]}')
 
         if len(players) % 2 == 1:
-            result.append('{player} is waiting..'.format(player=players[len(players) - 1]))
-
-        self.__results = result
+            self.__results.append(f'{players[len(players) - 1]} is waiting..')
 
     def free_for_all(self):
         self.__tag = colored('Free4All', 'yellow')
 
-        result = []
+        self.__results = []
         for i in range(len(self.__raw_data)):
             for j in range(0, i):
-                result.append(f'{self.__raw_data[i]:<{self.__void}}{colored(" versus ", "green")}{self.__raw_data[j]}')
+                self.__results.append(f'{self.__raw_data[i]:<{self.__void}}{colored(" versus ", "green")}{self.__raw_data[j]}')
 
-        self.__results = result
-        numpy.random.shuffle(result)
+        numpy.random.shuffle(self.__results)
 
     def groups(self, count=4):
         self.__tag = colored('Groups', 'yellow')
         players = self.__raw_data.copy()
         numpy.random.shuffle(players)
-        result = []
+        self.__results = []
         index = 0
         group = ''
         for player in players:
             group += player + ', '
             index += 1
             if index == count:
-                result.append(group[:-2])
+                self.__results.append(group[:-2])
                 group = ''
                 index = 0
 
         if group:
-            result.append(group[:-2])
-
-        self.__results = result
+            self.__results.append(group[:-2])
