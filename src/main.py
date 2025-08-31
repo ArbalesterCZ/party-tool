@@ -19,7 +19,11 @@ while True:
     command = input(f'{colored('E', 'green')}xit {colored('V', 'green')}ersus {colored('F', 'green')}ree4All {colored('G', 'green')}roups[{colored('1', 'green')}]: ').lower()
 
     if '$' in command:
-        players = Players(f'../rsc/{command.split('$', 1)[1].lower()}')
+        try:
+            filename = command.split('$', 1)[1].lower()
+            players = Players(f'../rsc/{filename}')
+        except Exception as e:
+            print(colored(f'{filename} not exist','red'))
     elif 'e' in command:
         exit()
     elif 'v' in command:
