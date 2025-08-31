@@ -11,8 +11,10 @@ def sound(message: str, lang='cs', filepath='/tmp/voice.mp3') -> None:
     tts.save(filepath)
     playsound.playsound(filepath)
 
+p_print = [print]
+p_voice = [print, sound]
 players = Players()
-players.show([print])
+players.show(p_print)
 
 while True:
     print(f'\n{colored('+', 'green')} to add text to speech effect.')
@@ -37,8 +39,6 @@ while True:
             players.groups(1)
 
     if command.startswith('+'):
-        processes = [print, sound]
+        players.show(p_print)
     else:
-        processes = [print]
-
-    players.show(processes)
+        players.show(p_voice)
