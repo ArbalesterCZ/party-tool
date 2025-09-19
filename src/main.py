@@ -39,6 +39,6 @@ while True:
             players.groups(1)
 
     if command.startswith('+'):
-        players.show(p_print)
-    else:
         players.show(p_voice)
+    else:
+        players.show(p_print)
